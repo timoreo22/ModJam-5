@@ -1,6 +1,7 @@
 key.tweaktoni.category=Tweakoni
 key.toggle.d_shift=Shift Lock
 key.toggle.bb=Underneath Block Placement
+key.rotate.block=Rotate Block
 item.rotator.name=Rotator
 tile.blocker.name=Blocker
 tile.carpet.white.name=White Carpet

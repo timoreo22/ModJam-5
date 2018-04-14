@@ -19,6 +19,7 @@ public class BlockRotate {
 		public static final int STAIRS = 1;
 		public static final int SLAB = 2;
 		public static final int CHEST = 3;
+		public static final int PISTON = 4;
 
 		private RotationType() {
 
@@ -31,7 +32,13 @@ public class BlockRotate {
 		rotateType[Block.getIdFromBlock(Blocks.WOODEN_SLAB)] = RotationType.SLAB;
 		rotateType[Block.getIdFromBlock(Blocks.STONE_SLAB2)] = RotationType.SLAB;
 		rotateType[Block.getIdFromBlock(Blocks.PURPUR_SLAB)] = RotationType.SLAB;
-
+		
+		rotateType[Block.getIdFromBlock(Blocks.PISTON)] = RotationType.PISTON;
+		rotateType[Block.getIdFromBlock(Blocks.STICKY_PISTON)] = RotationType.PISTON;
+		rotateType[Block.getIdFromBlock(Blocks.DISPENSER)] = RotationType.PISTON;
+		rotateType[Block.getIdFromBlock(Blocks.DROPPER)] = RotationType.PISTON;
+		rotateType[Block.getIdFromBlock(Blocks.OBSERVER)] = RotationType.PISTON;
+		
 		rotateType[Block.getIdFromBlock(Blocks.TRAPPED_CHEST)] = RotationType.CHEST;
 		rotateType[Block.getIdFromBlock(Blocks.CHEST)] = RotationType.CHEST;
 
@@ -66,13 +73,14 @@ public static IBlockState rotateVanillaBlock(World world, IBlockState state, Blo
                 for (EnumFacing facing : EnumFacing.HORIZONTALS) {
                     offsetPos = pos.offset(facing);
                     if (isEqual(world.getBlockState(offsetPos).getBlock(), state.getBlock())) {
-                        world.setBlockState(offsetPos, state.getBlock().getStateFromMeta(SIDE_OPPOSITE[bMeta]), 1);
                         return block.getStateFromMeta(SIDE_OPPOSITE[bMeta]);
                     }
                 }
                 return block.getStateFromMeta(SIDE_LEFT[bMeta]);
+            case 4:
+            	return block.getStateFromMeta(++bMeta % 6);
             default:
-                return block.getStateFromMeta(bMeta);
+                return block.getStateFromMeta(SIDE_LEFT[bMeta]);
         }
     }
 	return block.getStateFromMeta(bMeta);

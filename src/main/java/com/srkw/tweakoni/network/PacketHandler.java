@@ -23,5 +23,6 @@ public class PacketHandler {
 
     private static void registerMessages() {
         INSTANCE.registerMessage(PacketSendLoc.Handler.class, PacketSendLoc.class, nextID(), SERVER);
+        INSTANCE.registerMessage(PacketRotate.Handler.class, PacketRotate.class, nextID(), SERVER);
     }
 }
